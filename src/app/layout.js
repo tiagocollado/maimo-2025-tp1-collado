@@ -20,9 +20,6 @@ const kanit = Kanit({
 export const metadata = {
   title: "Recetas para tu hogar",
   description: "Recetas caseras y experiencias gastronómicas únicas.",
-  icons: {
-    icon: "/assets/imgs/logo.png",
-  },
 };
 
 export default function RootLayout({ children }) {
