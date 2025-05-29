@@ -1,13 +1,44 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import RecipeCard from "@/app/components/RecipeCard";
-import parsedData from "@/data/recipes";
+import axios from "axios";
+import Loading from "@/app/components/Loading";
 
 const RecipesGrid = () => {
-  console.log(parsedData);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("https://dummyjson.com/recipes");
+        const respondeData = response.data.recipes;
+        setData(respondeData);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <div className="recipes_grid">
-      {parsedData.recipes.map((recipe, index) => (
-        <RecipeCard key={index} image={recipe.image} name={recipe.name} />
-      ))}
+      {!loading &&
+        data.map((recipe) => (
+          <RecipeCard
+            key={recipe.id}
+            image={recipe.image}
+            name={recipe.name}
+            id={recipe.id}
+          />
+        ))}
+      {loading && <Loading />}
+      {error && "HUBO UN ERROR"}
     </div>
   );
 };
