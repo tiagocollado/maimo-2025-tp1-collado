@@ -6,7 +6,7 @@ const Hero = () => {
       <video autoPlay muted loop>
         <source src="/assets/videos/cooking_wok.mp4" type="video/mp4" />
       </video>
-      <h1>Las mejores recetas</h1>
+      <h1>The best recipes</h1>
     </section>
   );
 };

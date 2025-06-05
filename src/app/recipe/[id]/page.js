@@ -1,7 +1,8 @@
 import RecipeContainer from "@/app/components/RecipeContainer";
 
-const Recipe = async ({ params }) => {
-  const { id } = await params;
+const Recipe = ({ params }) => {
+  const { id } = params;
+
   return <RecipeContainer id={id} />;
 };
 
